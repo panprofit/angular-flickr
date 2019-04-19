@@ -14,7 +14,7 @@
       <img alt="{{image.title}}"
            title="{{image.title}}"
            mat-card-image
-           [src]="image.media.m">
+           [src]="image.media.m.replace('_m.', '.')">
     </mat-card-content>
     <mat-chip-list>
       <mat-chip *ngFor="let tag of image.tags.split(' ')"
