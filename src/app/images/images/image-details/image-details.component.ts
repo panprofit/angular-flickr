@@ -8,7 +8,7 @@ import {ActivatedRoute, Params} from '@angular/router';
   styleUrls: ['./image-details.component.css']
 })
 export class ImageDetailsComponent implements OnInit {
-  private image: ImageData;
+  public image: ImageData;
 
   constructor(
     private route: ActivatedRoute,

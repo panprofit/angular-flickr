@@ -8,7 +8,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
   styleUrls: ['./images.component.css']
 })
 export class ImagesComponent implements OnInit {
-  private imagesList: Array<ImageData>;
+  public imagesList: Array<ImageData>;
   public tag: string;
 
   constructor(
