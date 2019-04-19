@@ -1,0 +1,29 @@
+<mat-form-field class="search-form">
+  <input matInput
+         #searchTag
+         (keyup.enter)="getImages(searchTag.value)"
+         placeholder="Search Tag"
+         type="text">
+</mat-form-field>
+<button mat-raised-button
+        (click)="getImages(searchTag.value)"
+        color="primary">Search
+</button>
+<br>
+
+<div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutGap="0.5%"
+     fxLayoutAlign="center">
+  <mat-card class="card-picture"
+            *ngFor="let image of imagesList">
+    <a [routerLink]="[image.id]"
+       [queryParams]="{tag: tag}">
+      <img alt="{{image.title}}"
+           mat-card-image
+           title="{{image.author}}: {{image.title}}"
+           [src]="image.media.m">
+    </a>
+  </mat-card>
+</div>
+

@@ -1,0 +1,27 @@
+<div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutGap="0.5%"
+     fxLayoutAlign="center">
+
+  <mat-card class="mat-card"
+            *ngIf="image">
+    <mat-card-header>
+      <mat-card-title>Title: {{image.title}}</mat-card-title>
+      <mat-card-subtitle>Author: {{image.author}}</mat-card-subtitle>
+      <mat-card-subtitle>Published: {{image.published | date}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content">
+      <img alt="{{image.title}}"
+           title="{{image.title}}"
+           mat-card-image
+           [src]="image.media.m">
+    </mat-card-content>
+    <mat-chip-list>
+      <mat-chip *ngFor="let tag of image.tags.split(' ')"
+                class="mat-chip"
+                [routerLink]="['/']"
+                [queryParams]="{tag: tag}">{{tag}}
+      </mat-chip>
+    </mat-chip-list>
+  </mat-card>
+</div>
