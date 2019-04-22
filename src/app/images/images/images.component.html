@@ -15,7 +15,7 @@
 <div fxLayout="row wrap"
      fxLayoutGap="0.5%"
      fxLayoutAlign="center">
-  <a *ngFor="let image of imagesList"
+  <a *ngFor="let image of imagesList$ | async"
      [routerLink]="[image.id]"
      [queryParams]="{tag: tag}">
     <img alt="{{image.title}}"

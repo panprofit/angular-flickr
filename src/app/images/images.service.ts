@@ -17,7 +17,7 @@ export class ImagesService {
     @Inject('config') private config: IConfig
   ) {}
 
-  getList(tag: string = this.config.tag): Observable<object> {
+  getList(tag: string = this.config.tag): Observable<Array<ImageData>> {
     if (!this.imagesList || tag !== this.tag) {
       this.tag = tag;
       return this.http.jsonp(`${environment.API_URL}?tags=${tag}&format=json`, 'jsoncallback')
@@ -32,7 +32,7 @@ export class ImagesService {
     }
   }
 
-  getImage(id: string, tag: string): Observable<object> {
+  getImage(id: string, tag: string): Observable<ImageData> {
     if (!this.imagesList) {
       return this.getList(tag)
         .pipe(

@@ -2,7 +2,7 @@
      fxLayoutGap="0.5%"
      fxLayoutAlign="center">
   <mat-card class="mat-card"
-            *ngIf="image">
+            *ngIf="(image$ | async) as image">
     <mat-card-header>
       <mat-card-title>{{image.title}}</mat-card-title>
       <mat-card-subtitle>Author: {{image.author}}</mat-card-subtitle>
