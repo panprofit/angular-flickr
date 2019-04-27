@@ -14,9 +14,10 @@
            mat-card-image
            [src]="image.media.m.replace('_m.', '.')">
     </mat-card-content>
-    <mat-chip-list>
+    <mat-chip-list fxLayoutAlign="center">
       <mat-chip *ngFor="let tag of image.tags.split(' ')"
                 class="mat-chip"
+                title="Search images by tag"
                 [routerLink]="['/']"
                 [queryParams]="{tag: tag}">{{tag}}
       </mat-chip>

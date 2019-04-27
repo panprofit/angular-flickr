@@ -15,7 +15,8 @@ export class ImagesService {
   constructor(
     private http: HttpClient,
     @Inject('config') private config: IConfig
-  ) {}
+  ) {
+  }
 
   getList(tag: string = this.config.tag): Observable<Array<ImageData>> {
     if (!this.imagesList || tag !== this.tag) {
@@ -24,7 +25,8 @@ export class ImagesService {
         .pipe(
           map((data: ImagesData) =>
             this.imagesList = data.items.map((item) =>
-              Object.assign(item, {id: item.media.m.split('/').pop()}))
+              Object.assign(item,
+                {id: item.media.m.split('/').pop().replace('_m.', '.')}))
           )
         );
     } else {

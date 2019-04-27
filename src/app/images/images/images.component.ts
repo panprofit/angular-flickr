@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ImagesService, ImageData} from '../images.service';
+import {ImagesService, ImageData} from '../../shared/images.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import {flatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-images',
@@ -20,8 +21,8 @@ export class ImagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params: Params) =>
-      this.imagesList$ = this.imagesService.getList(this.tag = params.tag)
+    this.imagesList$ = this.route.queryParams.pipe(
+      flatMap((params: Params) => this.imagesService.getList(this.tag = params.tag))
     );
   }
 

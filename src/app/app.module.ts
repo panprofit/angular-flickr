@@ -1,18 +1,25 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {ImagesModule} from './images/images.module';
-import {RouterModule} from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: './images/images.module#ImagesModule'
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     ImagesModule.forRoot({tag: 'kitten'}),
-    RouterModule
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

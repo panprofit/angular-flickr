@@ -1,53 +1,40 @@
-import {Component, ModuleWithProviders, NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ImagesComponent} from './images/images.component';
 import {RouterModule, Routes} from '@angular/router';
-import {ImageDetailsComponent} from './images/image-details/image-details.component';
 import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
-import {MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatInputModule} from '@angular/material';
-import {MatChipsModule} from '@angular/material';
-import {IConfig, ImagesService} from './images.service';
+import {IConfig, ImagesService} from '../shared/images.service';
 import {FlexModule} from '@angular/flex-layout';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-@Component({
-  selector: 'app-images-module',
-  template: '<router-outlet></router-outlet>'
-})
-export class ImagesModuleComponent {}
+import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {SharedModule} from '../shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: ImagesModuleComponent,
-    children: [
-      {path: '', component: ImagesComponent},
-      {path: ':id', component: ImageDetailsComponent}
-    ]
+    component: ImagesComponent
+  },
+  {
+    path: ':id',
+    loadChildren: '../image/image.module#ImageModule'
   }
 ];
 
 @NgModule({
   declarations: [
-    ImagesModuleComponent,
-    ImagesComponent,
-    ImageDetailsComponent
+    ImagesComponent
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    RouterModule.forRoot(routes),
-    MatCardModule,
-    MatGridListModule,
-    MatChipsModule,
+    RouterModule.forChild(routes),
     FlexModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule
   ],
-  exports: [RouterModule, ImagesModuleComponent]
+  exports: [RouterModule]
 })
 export class ImagesModule {
   static forRoot(config: IConfig): ModuleWithProviders {
