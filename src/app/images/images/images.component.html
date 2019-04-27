@@ -1,17 +1,19 @@
-<div fxLayoutAlign="center">
+<form #form="ngForm"
+      fxLayoutAlign="center">
   <mat-form-field class="search-form">
     <input matInput
-           #searchTag
-           (keyup.enter)="getImages(searchTag.value)"
+           name="search"
+           ngModel
            placeholder="Search Tag"
            type="text">
   </mat-form-field>
   <button mat-raised-button
           class="button"
-          (click)="getImages(searchTag.value)"
+          [routerLink]=""
+          [queryParams]="{tag: form.value.search}"
           color="primary">Search
   </button>
-</div>
+</form>
 <div fxLayout="row wrap"
      fxLayoutGap="0.5%"
      fxLayoutAlign="center">

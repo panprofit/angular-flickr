@@ -18,7 +18,7 @@ export class ImageComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.image$ = combineLatest(
       this.route.params,
       this.route.queryParams,

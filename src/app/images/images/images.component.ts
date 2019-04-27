@@ -20,13 +20,10 @@ export class ImagesComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.imagesList$ = this.route.queryParams.pipe(
       flatMap((params: Params) => this.imagesService.getList(this.tag = params.tag))
     );
   }
 
-  getImages(tag: string) {
-    this.router.navigate([''], {queryParams: {tag}});
-  }
 }

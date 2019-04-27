@@ -7,6 +7,7 @@ import {IConfig, ImagesService} from '../shared/images.service';
 import {FlexModule} from '@angular/flex-layout';
 import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {SharedModule} from '../shared/shared.module';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   exports: [RouterModule]
 })
